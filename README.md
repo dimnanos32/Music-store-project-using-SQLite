@@ -1,1 +1,2 @@
 # Music-store-project-using-SQLite
+This is my first project on SQL with the use of DB Browser(SQLite). In the .db file, you will find the chinook database which I used for this project and in the music_store_sqbpro file you will find my codes. Please take a look! I will be really happy if you contact me in dimnanos32@gmail.com for feedback. I 'm on my first steps through data science so I need every possible help that I can get. Thank you for your time! 
