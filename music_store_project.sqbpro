@@ -1,4 +1,4 @@
-Query 1
+1)Which tracks appeared in the most playlists? How many playlists did they appear in?
 SELECT tracks.TrackId AS 'TrackID' ,tracks.Name AS 'Names',COUNT(playlist_track.PlaylistId) AS 'playlists_which_appears'
 FROM playlist_track
 JOIN tracks
@@ -8,7 +8,7 @@ ORDER BY 3 DESC;
 
 
 
-Query 2
+2)Which track generated the most revenue? Which album? Which genre?
 SELECT tracks.TrackId,tracks.Name AS 'Name', SUM(invoice_items.UnitPrice) 'Total Rev'
 FROM tracks
 JOIN invoice_items
@@ -52,7 +52,7 @@ GROUP BY tracks.GenreId
 ORDER BY 2 DESC;
 
 
-Query 3
+3)Which countries have the highest sales revenue? What percent of total revenue does each country make up?
 WITH total_rev AS ( SELECT SUM(Total) AS 'Total_rev'
 FROM invoices)
 SELECT BillingCountry,SUM(Total) AS 'Total_revenue', 100.0*SUM(Total)/total_rev.Total_rev AS '%_of_Total_revenue'
@@ -60,7 +60,7 @@ FROM invoices,total_rev
 GROUP BY BillingCountry
 ORDER BY 2 DESC;
 
-Query 4
+4)How many customers did each employee support, what is the average revenue for each sale, and what is their total sale?
 WITH customers_data AS (SELECT invoices.CustomerId,customers.SupportRepId,SUM(Total) AS 'income_of_sales',AVG(Total) AS 'avgsales_per_employee'
 FROM customers
 JOIN invoices
@@ -75,7 +75,7 @@ ON employees.EmployeeId=customers_data.SupportRepId
 GROUP BY employees.EmployeeId;
 
 
-Query 5
+5)Do longer or shorter length albums tend to generate more revenue?
 WITH table1 AS (
 SELECT tracks.TrackId,tracks.Name AS 'Name', SUM(invoice_items.UnitPrice) 'Total_Rev'
 FROM tracks
@@ -91,7 +91,7 @@ GROUP BY tracks.AlbumId
 ORDER BY 2 DESC;
 
 
-Query 6
+6)Is the number of times a track appears in any playlist a good indicator of sales?
 WITH tracknums AS (SELECT tracks.TrackId,COUNT(*) AS 'playlists'
 FROM tracks
 JOIN playlist_track
